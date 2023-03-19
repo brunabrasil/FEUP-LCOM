@@ -25,6 +25,7 @@
 
 /* Timer selection: bits 7 and 6 */
 
+#define GET_TIMER(n) (0x40 + n)
 #define TIMER_SEL0   0x00              /**< @brief Control Word for Timer 0 */
 #define TIMER_SEL1   BIT(6)            /**< @brief Control Word for Timer 1 */
 #define TIMER_SEL2   BIT(7)            /**< @brief Control Word for Timer 2 */
@@ -51,6 +52,11 @@
 #define TIMER_RB_COUNT_  BIT(5)
 #define TIMER_RB_STATUS_ BIT(4)
 #define TIMER_RB_SEL(n)  BIT((n) + 1)
+
+//ADDED
+/* SELECT TIMER STATUS FIELD */
+#define INITIALIZATION_MODE (BIT(5) | BIT(4))
+#define OPERATING_MODE (BIT(1) | BIT(2) | BIT(3))
 
 /**@}*/
 

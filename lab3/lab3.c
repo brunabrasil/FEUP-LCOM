@@ -7,7 +7,7 @@
 
 extern int counter;
 extern uint8_t data;
-extern uint8_t scanconde[2];
+extern uint8_t scancode[2];
 extern int size;
 extern bool makecode, kbd_valid, full_code_ready;
 extern int cnt;
@@ -58,7 +58,7 @@ int (kbd_test_scan)() {
          case HARDWARE: /* hardware interrupt notification */	
             if(msg.m_notify.interrupts & BIT(bit_no)){ //ve se o bit do irq esta ativo na interrupção
                 kbc_ih();
-                if(kbd_valid & full_code_ready) kbd_print_scancode(makecode, size, scanconde);
+                if(kbd_valid & full_code_ready) kbd_print_scancode(makecode, size, scancode);
             }
             break;
          
@@ -79,7 +79,7 @@ int (kbd_test_poll)() {
     {
         kbc_ih();
         if(kbd_valid&& full_code_ready){
-            kbd_print_scancode(makecode, size, scanconde);
+            kbd_print_scancode(makecode, size, scancode);
         }
         tickdelay(micros_to_ticks(DELAY_US));
     }
@@ -125,7 +125,7 @@ int (kbd_test_timed_scan)(uint8_t idle) { // test whether if program is able to 
                 }
                 if(msg.m_notify.interrupts & BIT(kbc_bit_no)){
                     kbc_ih();
-                    if(full_code_ready && kbd_valid) kbd_print_scancode(makecode, size, scanconde);
+                    if(full_code_ready && kbd_valid) kbd_print_scancode(makecode, size, scancode);
                     counter = 0;
                 }
                 break;

@@ -6,7 +6,7 @@ int hook_id = 1;
 bool makecode, full_code_ready=false, kbd_valid = false;
 uint8_t data;
 int size = 0;
-uint8_t scanconde[2];
+uint8_t scancode[2];
 
 void (kbc_ih)() {
     if(kbd_get_status()) return;
@@ -37,7 +37,7 @@ int (kbd_read_value)(){ //read the scancode byte from the out buffer
         printf("error reading buffer");
         return 1;
     }
-    scanconde[size] = data;
+    scancode[size] = data;
     size++;
     if(size == 1 && (data == TWO_BYTE)){
         full_code_ready = false;
